@@ -20,5 +20,6 @@ typedef struct {
 void initializeCanvas(Canvas *c);
 void displayCanvas(Canvas *c);
 void clearCanvas(Canvas *c);
+void drawRectangle(Canvas *c, int x, int y, int width, int height);
 
 #endif // GRAPHICS_H

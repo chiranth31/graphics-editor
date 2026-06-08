@@ -71,3 +71,36 @@ void clearCanvas(Canvas *c) {
         }
     }
 }
+
+/*
+ * drawRectangle
+ * Draws a rectangle using '*' characters on the canvas.
+ * (x, y) is the top-left corner of the rectangle.
+ * Parameters: pointer to Canvas structure, x-coordinate, y-coordinate,
+ * width and height of the rectangle.
+ */
+void drawRectangle(Canvas *c, int x, int y, int width, int height) {
+    int i, j;
+    int xEnd = x + width - 1;
+    int yEnd = y + height - 1;
+    
+    // Draw horizontal edges if dimensions are valid
+    for (j = x; j <= xEnd; j++) {
+        if (y >= 0 && y < CANVAS_HEIGHT && j >= 0 && j < CANVAS_WIDTH) {
+            c->canvas[y][j] = '*';
+        }
+        if (yEnd >= 0 && yEnd < CANVAS_HEIGHT && j >= 0 && j < CANVAS_WIDTH) {
+            c->canvas[yEnd][j] = '*';
+        }
+    }
+    
+    // Draw vertical edges
+    for (i = y; i <= yEnd; i++) {
+        if (x >= 0 && x < CANVAS_WIDTH && i >= 0 && i < CANVAS_HEIGHT) {
+            c->canvas[i][x] = '*';
+        }
+        if (xEnd >= 0 && xEnd < CANVAS_WIDTH && i >= 0 && i < CANVAS_HEIGHT) {
+            c->canvas[i][xEnd] = '*';
+        }
+    }
+}

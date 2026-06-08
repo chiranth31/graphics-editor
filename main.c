@@ -17,10 +17,11 @@ void displayMenu(void) {
     printf("\n");
     printf("========== 2D Graphics Editor ==========\n");
     printf("1. Display Picture\n");
-    printf("2. Clear Canvas\n");
-    printf("3. Exit\n");
+    printf("2. Draw Rectangle\n");
+    printf("3. Clear Canvas\n");
+    printf("4. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-3): ");
+    printf("Enter your choice (1-4): ");
 }
 
 /*
@@ -76,21 +77,39 @@ int main(void) {
                 displayCanvas(&canvas);
                 break;
                 
-            case 2:
+            case 2: {
+                // Draw Rectangle option
+                int x, y, width, height;
+                printf("Enter x, y, width, height: ");
+                if (scanf("%d %d %d %d", &x, &y, &width, &height) != 4) {
+                    clearInputBuffer();
+                    printf("ERROR: Invalid rectangle input! Please enter four integers.\n");
+                    break;
+                }
+                clearInputBuffer();
+                if (width <= 0 || height <= 0) {
+                    printf("ERROR: Width and height must be positive values.\n");
+                    break;
+                }
+                drawRectangle(&canvas, x, y, width, height);
+                printf("Rectangle drawn at (%d, %d) with width %d and height %d.\n", x, y, width, height);
+                break;
+            }
+            case 3:
                 // Clear Canvas option - resets all pixels to underscore
                 clearCanvas(&canvas);
                 printf("Canvas has been cleared!\n");
                 break;
                 
-            case 3:
+            case 4:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);
                 break;
                 
             default:
-                // Invalid choice - user entered a number outside valid range (1-3)
-                printf("Invalid choice! Please enter 1, 2, or 3.\n");
+                // Invalid choice - user entered a number outside valid range (1-4)
+                printf("Invalid choice! Please enter 1, 2, 3, or 4.\n");
                 break;
         }
     }
