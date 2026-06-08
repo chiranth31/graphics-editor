@@ -15,7 +15,8 @@ void displayMenu(void) {
     printf("\n");
     printf("========== 2D Graphics Editor ==========\n");
     printf("1. Display Picture\n");
-    printf("2. Exit\n");
+    printf("2. Clear Canvas\n");
+    printf("3. Exit\n");
     printf("========================================\n");
     printf("Enter your choice: ");
 }
@@ -47,6 +48,12 @@ int main(void) {
                 break;
                 
             case 2:
+                // Clear Canvas option
+                clearCanvas(&canvas);
+                printf("Canvas has been cleared!\n");
+                break;
+                
+            case 3:
                 // Exit option
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);
@@ -54,7 +61,7 @@ int main(void) {
                 
             default:
                 // Invalid choice
-                printf("Invalid choice! Please enter 1 or 2.\n");
+                printf("Invalid choice! Please enter 1, 2, or 3.\n");
                 break;
         }
     }

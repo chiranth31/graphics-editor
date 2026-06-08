@@ -19,5 +19,6 @@ typedef struct {
 // Function prototypes
 void initializeCanvas(Canvas *c);
 void displayCanvas(Canvas *c);
+void clearCanvas(Canvas *c);
 
 #endif // GRAPHICS_H

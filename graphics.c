@@ -25,21 +25,49 @@ void initializeCanvas(Canvas *c) {
 
 /*
  * displayCanvas
- * Prints the current canvas to the screen
+ * Prints the current canvas with borders and row/column formatting
  * Parameters: pointer to Canvas structure
  */
 void displayCanvas(Canvas *c) {
     int i, j;
     
     printf("\n");
+    printf("+");
+    for (j = 0; j < CANVAS_WIDTH; j++) {
+        printf("-");
+    }
+    printf("+\n");
+    
+    // Iterate through all rows
+    for (i = 0; i < CANVAS_HEIGHT; i++) {
+        printf("|");
+        // Iterate through all columns
+        for (j = 0; j < CANVAS_WIDTH; j++) {
+            printf("%c", c->canvas[i][j]);
+        }
+        printf("|\n");
+    }
+    
+    printf("+");
+    for (j = 0; j < CANVAS_WIDTH; j++) {
+        printf("-");
+    }
+    printf("+\n\n");
+}
+
+/*
+ * clearCanvas
+ * Resets the canvas to all underscore ('_') characters
+ * Parameters: pointer to Canvas structure
+ */
+void clearCanvas(Canvas *c) {
+    int i, j;
     
     // Iterate through all rows
     for (i = 0; i < CANVAS_HEIGHT; i++) {
         // Iterate through all columns
         for (j = 0; j < CANVAS_WIDTH; j++) {
-            printf("%c", c->canvas[i][j]);
+            c->canvas[i][j] = '_';
         }
-        printf("\n");
     }
-    printf("\n");
 }
