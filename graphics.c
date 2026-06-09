@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "graphics.h"
 
 /*
@@ -127,4 +128,47 @@ void drawLine(Canvas *c, int x, int y, int length, int horizontal) {
             }
         }
     }
+}
+
+/*
+ * drawGeneralLine
+ * Draws a straight line between any two canvas points using Bresenham's algorithm.
+ * This helper is used to render triangle edges cleanly.
+ */
+static void drawGeneralLine(Canvas *c, int x1, int y1, int x2, int y2) {
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int sx = x1 < x2 ? 1 : -1;
+    int sy = y1 < y2 ? 1 : -1;
+    int err = dx - dy;
+    int e2;
+
+    while (1) {
+        if (x1 >= 0 && x1 < CANVAS_WIDTH && y1 >= 0 && y1 < CANVAS_HEIGHT) {
+            c->canvas[y1][x1] = '*';
+        }
+        if (x1 == x2 && y1 == y2) {
+            break;
+        }
+        e2 = 2 * err;
+        if (e2 > -dy) {
+            err -= dy;
+            x1 += sx;
+        }
+        if (e2 < dx) {
+            err += dx;
+            y1 += sy;
+        }
+    }
+}
+
+/*
+ * drawTriangle
+ * Draws a triangle by connecting three coordinates with '*' characters.
+ * Parameters: pointer to Canvas structure and three vertex coordinate pairs.
+ */
+void drawTriangle(Canvas *c, int x1, int y1, int x2, int y2, int x3, int y3) {
+    drawGeneralLine(c, x1, y1, x2, y2);
+    drawGeneralLine(c, x2, y2, x3, y3);
+    drawGeneralLine(c, x3, y3, x1, y1);
 }

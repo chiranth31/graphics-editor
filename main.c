@@ -19,10 +19,11 @@ void displayMenu(void) {
     printf("1. Display Picture\n");
     printf("2. Draw Rectangle\n");
     printf("3. Draw Line\n");
-    printf("4. Clear Canvas\n");
-    printf("5. Exit\n");
+    printf("4. Draw Triangle\n");
+    printf("5. Clear Canvas\n");
+    printf("6. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-5): ");
+    printf("Enter your choice (1-6): ");
 }
 
 /*
@@ -115,21 +116,36 @@ int main(void) {
                        horizontal ? "horizontal" : "vertical");
                 break;
             }
-            case 4:
+            case 4: {
+                // Draw Triangle option
+                int x1, y1, x2, y2, x3, y3;
+                printf("Enter x1, y1, x2, y2, x3, y3: ");
+                if (scanf("%d %d %d %d %d %d", &x1, &y1, &x2, &y2, &x3, &y3) != 6) {
+                    clearInputBuffer();
+                    printf("ERROR: Invalid triangle input! Please enter six integers.\n");
+                    break;
+                }
+                clearInputBuffer();
+                drawTriangle(&canvas, x1, y1, x2, y2, x3, y3);
+                printf("Triangle drawn with vertices (%d, %d), (%d, %d), (%d, %d).\n",
+                       x1, y1, x2, y2, x3, y3);
+                break;
+            }
+            case 5:
                 // Clear Canvas option - resets all pixels to underscore
                 clearCanvas(&canvas);
                 printf("Canvas has been cleared!\n");
                 break;
                 
-            case 5:
+            case 6:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);
                 break;
                 
             default:
-                // Invalid choice - user entered a number outside valid range (1-5)
-                printf("Invalid choice! Please enter 1, 2, 3, 4, or 5.\n");
+                // Invalid choice - user entered a number outside valid range (1-6)
+                printf("Invalid choice! Please enter 1, 2, 3, 4, 5, or 6.\n");
                 break;
         }
     }
