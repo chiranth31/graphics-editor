@@ -20,10 +20,11 @@ void displayMenu(void) {
     printf("2. Draw Rectangle\n");
     printf("3. Draw Line\n");
     printf("4. Draw Triangle\n");
-    printf("5. Clear Canvas\n");
-    printf("6. Exit\n");
+    printf("5. Draw Circle\n");
+    printf("6. Clear Canvas\n");
+    printf("7. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-6): ");
+    printf("Enter your choice (1-7): ");
 }
 
 /*
@@ -54,7 +55,7 @@ int main(void) {
     printf("Welcome to the 2D Graphics Editor!\n");
     printf("(Press Enter after each menu choice)\n");
     
-    // Continuous menu loop - runs until user selects Exit (option 5)
+    // Continuous menu loop - runs until user selects Exit (option 7)
     while (1) {
         displayMenu();
         
@@ -131,21 +132,39 @@ int main(void) {
                        x1, y1, x2, y2, x3, y3);
                 break;
             }
-            case 5:
+            case 5: {
+                // Draw Circle option
+                int cx, cy, radius;
+                printf("Enter center x, center y, radius: ");
+                if (scanf("%d %d %d", &cx, &cy, &radius) != 3) {
+                    clearInputBuffer();
+                    printf("ERROR: Invalid circle input! Please enter three integers.\n");
+                    break;
+                }
+                clearInputBuffer();
+                if (radius <= 0) {
+                    printf("ERROR: Radius must be a positive value.\n");
+                    break;
+                }
+                drawCircle(&canvas, cx, cy, radius);
+                printf("Circle drawn at center (%d, %d) with radius %d.\n", cx, cy, radius);
+                break;
+            }
+            case 6:
                 // Clear Canvas option - resets all pixels to underscore
                 clearCanvas(&canvas);
                 printf("Canvas has been cleared!\n");
                 break;
                 
-            case 6:
+            case 7:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);
                 break;
                 
             default:
-                // Invalid choice - user entered a number outside valid range (1-6)
-                printf("Invalid choice! Please enter 1, 2, 3, 4, 5, or 6.\n");
+                // Invalid choice - user entered a number outside valid range (1-7)
+                printf("Invalid choice! Please enter 1, 2, 3, 4, 5, 6, or 7.\n");
                 break;
         }
     }

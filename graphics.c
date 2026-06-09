@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "graphics.h"
 
 /*
@@ -126,6 +127,45 @@ void drawLine(Canvas *c, int x, int y, int length, int horizontal) {
             if (x >= 0 && x < CANVAS_WIDTH && i >= 0 && i < CANVAS_HEIGHT) {
                 c->canvas[i][x] = '*';
             }
+        }
+    }
+}
+
+/*
+ * drawCircle
+ * Draws an approximate circle using '*' characters at the specified center and radius.
+ */
+void drawCircle(Canvas *c, int centerX, int centerY, int radius) {
+    int dx, dy;
+    int x, y;
+
+    if (radius <= 0) {
+        return;
+    }
+
+    for (dx = -radius; dx <= radius; dx++) {
+        y = (int)(centerY + 0.5 + sqrt((double)(radius * radius - dx * dx)));
+        x = centerX + dx;
+        if (y >= 0 && y < CANVAS_HEIGHT && x >= 0 && x < CANVAS_WIDTH) {
+            c->canvas[y][x] = '*';
+        }
+
+        y = (int)(centerY - 0.5 - sqrt((double)(radius * radius - dx * dx)));
+        if (y >= 0 && y < CANVAS_HEIGHT && x >= 0 && x < CANVAS_WIDTH) {
+            c->canvas[y][x] = '*';
+        }
+    }
+
+    for (dy = -radius; dy <= radius; dy++) {
+        x = (int)(centerX + 0.5 + sqrt((double)(radius * radius - dy * dy)));
+        y = centerY + dy;
+        if (x >= 0 && x < CANVAS_WIDTH && y >= 0 && y < CANVAS_HEIGHT) {
+            c->canvas[y][x] = '*';
+        }
+
+        x = (int)(centerX - 0.5 - sqrt((double)(radius * radius - dy * dy)));
+        if (x >= 0 && x < CANVAS_WIDTH && y >= 0 && y < CANVAS_HEIGHT) {
+            c->canvas[y][x] = '*';
         }
     }
 }
