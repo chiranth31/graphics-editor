@@ -23,9 +23,10 @@ void displayMenu(void) {
     printf("5. Draw Circle\n");
     printf("6. Clear Canvas\n");
     printf("7. List Objects\n");
-    printf("8. Exit\n");
+    printf("8. Delete Object\n");
+    printf("9. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-8): ");
+    printf("Enter your choice (1-9): ");
 }
 
 /*
@@ -180,7 +181,26 @@ int main(void) {
                 listObjects();
                 break;
 
-            case 8:
+            case 8: {
+                int id;
+                printf("Enter object id to delete: ");
+                if (scanf("%d", &id) != 1) {
+                    clearInputBuffer();
+                    printf("ERROR: Invalid input! Please enter a numeric object id.\n");
+                    break;
+                }
+                clearInputBuffer();
+                if (deleteObject(id)) {
+                    redrawObjects(&canvas);
+                    printf("Object %d deleted. Canvas redrawn.\n", id);
+                    listObjects();
+                } else {
+                    printf("Object id %d not found. No changes made.\n", id);
+                }
+                break;
+            }
+
+            case 9:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);

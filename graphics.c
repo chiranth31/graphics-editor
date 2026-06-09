@@ -105,6 +105,58 @@ void listObjects(void) {
     printf("\n");
 }
 
+int deleteObject(int id) {
+    int i, j;
+    int found = -1;
+
+    for (i = 0; i < object_count; i++) {
+        if (object_list[i].id == id) {
+            found = i;
+            break;
+        }
+    }
+
+    if (found < 0) {
+        return 0;
+    }
+
+    for (j = found; j < object_count - 1; j++) {
+        object_list[j] = object_list[j + 1];
+    }
+    object_count--;
+    return 1;
+}
+
+void redrawObjects(Canvas *c) {
+    int i;
+    clearCanvas(c);
+
+    for (i = 0; i < object_count; i++) {
+        GraphicalObject *o = &object_list[i];
+        switch (o->type) {
+            case OBJ_RECTANGLE:
+                drawRectangle(c, o->data.rect.x, o->data.rect.y,
+                              o->data.rect.width, o->data.rect.height);
+                break;
+            case OBJ_LINE:
+                drawLine(c, o->data.line.x, o->data.line.y,
+                         o->data.line.length, o->data.line.horizontal);
+                break;
+            case OBJ_TRIANGLE:
+                drawTriangle(c, o->data.tri.x1, o->data.tri.y1,
+                             o->data.tri.x2, o->data.tri.y2,
+                             o->data.tri.x3, o->data.tri.y3);
+                break;
+            case OBJ_CIRCLE:
+                drawCircle(c, o->data.circ.cx, o->data.circ.cy,
+                           o->data.circ.radius);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 
 /*
  * initializeCanvas
