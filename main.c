@@ -22,9 +22,10 @@ void displayMenu(void) {
     printf("4. Draw Triangle\n");
     printf("5. Draw Circle\n");
     printf("6. Clear Canvas\n");
-    printf("7. Exit\n");
+    printf("7. List Objects\n");
+    printf("8. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-7): ");
+    printf("Enter your choice (1-8): ");
 }
 
 /*
@@ -51,6 +52,8 @@ int main(void) {
     
     // Initialize the canvas with '_' characters
     initializeCanvas(&canvas);
+    // Initialize object storage
+    initObjectList();
     
     printf("Welcome to the 2D Graphics Editor!\n");
     printf("(Press Enter after each menu choice)\n");
@@ -66,9 +69,9 @@ int main(void) {
         if (inputStatus != 1) {
             // Clear the invalid input from the buffer
             clearInputBuffer();
-            
+
             // Notify user of the error
-            printf("ERROR: Invalid input! Please enter a numeric choice (1-5).\n");
+            printf("ERROR: Invalid input! Please enter a numeric choice (1-8).\n");
             continue;  // Skip to next iteration of menu loop
         }
         
@@ -95,7 +98,11 @@ int main(void) {
                     break;
                 }
                 drawRectangle(&canvas, x, y, width, height);
-                printf("Rectangle drawn at (%d, %d) with width %d and height %d.\n", x, y, width, height);
+                {
+                    int id = addRectangleObject(x, y, width, height);
+                    printf("Rectangle drawn at (%d, %d) with width %d and height %d.\n", x, y, width, height);
+                    if (id > 0) printf("Object id: %d\n", id);
+                }
                 break;
             }
             case 3: {
@@ -113,8 +120,12 @@ int main(void) {
                     break;
                 }
                 drawLine(&canvas, x, y, length, horizontal ? 1 : 0);
-                printf("Line drawn at (%d, %d) with length %d, %s.\n", x, y, length,
-                       horizontal ? "horizontal" : "vertical");
+                  {
+                      int id = addLineObject(x, y, length, horizontal ? 1 : 0);
+                      printf("Line drawn at (%d, %d) with length %d, %s.\n", x, y, length,
+                          horizontal ? "horizontal" : "vertical");
+                      if (id > 0) printf("Object id: %d\n", id);
+                  }
                 break;
             }
             case 4: {
@@ -128,8 +139,12 @@ int main(void) {
                 }
                 clearInputBuffer();
                 drawTriangle(&canvas, x1, y1, x2, y2, x3, y3);
-                printf("Triangle drawn with vertices (%d, %d), (%d, %d), (%d, %d).\n",
-                       x1, y1, x2, y2, x3, y3);
+                  {
+                      int id = addTriangleObject(x1, y1, x2, y2, x3, y3);
+                      printf("Triangle drawn with vertices (%d, %d), (%d, %d), (%d, %d).\n",
+                          x1, y1, x2, y2, x3, y3);
+                      if (id > 0) printf("Object id: %d\n", id);
+                  }
                 break;
             }
             case 5: {
@@ -147,7 +162,11 @@ int main(void) {
                     break;
                 }
                 drawCircle(&canvas, cx, cy, radius);
-                printf("Circle drawn at center (%d, %d) with radius %d.\n", cx, cy, radius);
+                {
+                    int id = addCircleObject(cx, cy, radius);
+                    printf("Circle drawn at center (%d, %d) with radius %d.\n", cx, cy, radius);
+                    if (id > 0) printf("Object id: %d\n", id);
+                }
                 break;
             }
             case 6:
@@ -155,16 +174,21 @@ int main(void) {
                 clearCanvas(&canvas);
                 printf("Canvas has been cleared!\n");
                 break;
-                
+
             case 7:
+                // List stored objects
+                listObjects();
+                break;
+
+            case 8:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);
                 break;
-                
+
             default:
-                // Invalid choice - user entered a number outside valid range (1-7)
-                printf("Invalid choice! Please enter 1, 2, 3, 4, 5, 6, or 7.\n");
+                // Invalid choice - user entered a number outside valid range (1-8)
+                printf("Invalid choice! Please enter 1, 2, 3, 4, 5, 6, 7, or 8.\n");
                 break;
         }
     }

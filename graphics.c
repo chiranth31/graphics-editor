@@ -8,6 +8,104 @@
 #include <math.h>
 #include "graphics.h"
 
+// Internal object list storage
+static GraphicalObject object_list[MAX_OBJECTS];
+static int object_count = 0;
+static int next_object_id = 1;
+
+void initObjectList(void) {
+    object_count = 0;
+    next_object_id = 1;
+}
+
+static int addObject(GraphicalObject *obj) {
+    if (object_count >= MAX_OBJECTS) return -1;
+    obj->id = next_object_id++;
+    object_list[object_count++] = *obj;
+    return obj->id;
+}
+
+int addRectangleObject(int x, int y, int width, int height) {
+    GraphicalObject obj;
+    obj.type = OBJ_RECTANGLE;
+    obj.data.rect.x = x;
+    obj.data.rect.y = y;
+    obj.data.rect.width = width;
+    obj.data.rect.height = height;
+    return addObject(&obj);
+}
+
+int addLineObject(int x, int y, int length, int horizontal) {
+    GraphicalObject obj;
+    obj.type = OBJ_LINE;
+    obj.data.line.x = x;
+    obj.data.line.y = y;
+    obj.data.line.length = length;
+    obj.data.line.horizontal = horizontal ? 1 : 0;
+    return addObject(&obj);
+}
+
+int addTriangleObject(int x1, int y1, int x2, int y2, int x3, int y3) {
+    GraphicalObject obj;
+    obj.type = OBJ_TRIANGLE;
+    obj.data.tri.x1 = x1;
+    obj.data.tri.y1 = y1;
+    obj.data.tri.x2 = x2;
+    obj.data.tri.y2 = y2;
+    obj.data.tri.x3 = x3;
+    obj.data.tri.y3 = y3;
+    return addObject(&obj);
+}
+
+int addCircleObject(int cx, int cy, int radius) {
+    GraphicalObject obj;
+    obj.type = OBJ_CIRCLE;
+    obj.data.circ.cx = cx;
+    obj.data.circ.cy = cy;
+    obj.data.circ.radius = radius;
+    return addObject(&obj);
+}
+
+void listObjects(void) {
+    int i;
+    if (object_count == 0) {
+        printf("No objects stored.\n");
+        return;
+    }
+    printf("\nStored Objects (count=%d):\n", object_count);
+    for (i = 0; i < object_count; i++) {
+        GraphicalObject *o = &object_list[i];
+        switch (o->type) {
+            case OBJ_RECTANGLE:
+                printf("%d: Rectangle at (%d,%d) w=%d h=%d\n", o->id,
+                       o->data.rect.x, o->data.rect.y,
+                       o->data.rect.width, o->data.rect.height);
+                break;
+            case OBJ_LINE:
+                printf("%d: Line at (%d,%d) len=%d %s\n", o->id,
+                       o->data.line.x, o->data.line.y,
+                       o->data.line.length,
+                       o->data.line.horizontal ? "horizontal" : "vertical");
+                break;
+            case OBJ_TRIANGLE:
+                printf("%d: Triangle (%d,%d)-(%d,%d)-(%d,%d)\n", o->id,
+                       o->data.tri.x1, o->data.tri.y1,
+                       o->data.tri.x2, o->data.tri.y2,
+                       o->data.tri.x3, o->data.tri.y3);
+                break;
+            case OBJ_CIRCLE:
+                printf("%d: Circle center=(%d,%d) r=%d\n", o->id,
+                       o->data.circ.cx, o->data.circ.cy,
+                       o->data.circ.radius);
+                break;
+            default:
+                printf("%d: Unknown object type\n", o->id);
+        }
+    }
+    printf("\n");
+}
+
+
 /*
  * initializeCanvas
  * Fills the canvas with underscore ('_') characters
