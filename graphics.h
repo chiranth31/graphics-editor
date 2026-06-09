@@ -21,5 +21,6 @@ void initializeCanvas(Canvas *c);
 void displayCanvas(Canvas *c);
 void clearCanvas(Canvas *c);
 void drawRectangle(Canvas *c, int x, int y, int width, int height);
+void drawLine(Canvas *c, int x, int y, int length, int horizontal);
 
 #endif // GRAPHICS_H

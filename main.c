@@ -18,10 +18,11 @@ void displayMenu(void) {
     printf("========== 2D Graphics Editor ==========\n");
     printf("1. Display Picture\n");
     printf("2. Draw Rectangle\n");
-    printf("3. Clear Canvas\n");
-    printf("4. Exit\n");
+    printf("3. Draw Line\n");
+    printf("4. Clear Canvas\n");
+    printf("5. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-4): ");
+    printf("Enter your choice (1-5): ");
 }
 
 /*
@@ -52,7 +53,7 @@ int main(void) {
     printf("Welcome to the 2D Graphics Editor!\n");
     printf("(Press Enter after each menu choice)\n");
     
-    // Continuous menu loop - runs until user selects Exit (option 3)
+    // Continuous menu loop - runs until user selects Exit (option 5)
     while (1) {
         displayMenu();
         
@@ -65,7 +66,7 @@ int main(void) {
             clearInputBuffer();
             
             // Notify user of the error
-            printf("ERROR: Invalid input! Please enter a numeric choice (1-3).\n");
+            printf("ERROR: Invalid input! Please enter a numeric choice (1-5).\n");
             continue;  // Skip to next iteration of menu loop
         }
         
@@ -95,21 +96,40 @@ int main(void) {
                 printf("Rectangle drawn at (%d, %d) with width %d and height %d.\n", x, y, width, height);
                 break;
             }
-            case 3:
+            case 3: {
+                // Draw Line option
+                int x, y, length, horizontal;
+                printf("Enter x, y, length, horizontal(1=horizontal,0=vertical): ");
+                if (scanf("%d %d %d %d", &x, &y, &length, &horizontal) != 4) {
+                    clearInputBuffer();
+                    printf("ERROR: Invalid line input! Please enter four integers.\n");
+                    break;
+                }
+                clearInputBuffer();
+                if (length <= 0) {
+                    printf("ERROR: Length must be a positive value.\n");
+                    break;
+                }
+                drawLine(&canvas, x, y, length, horizontal ? 1 : 0);
+                printf("Line drawn at (%d, %d) with length %d, %s.\n", x, y, length,
+                       horizontal ? "horizontal" : "vertical");
+                break;
+            }
+            case 4:
                 // Clear Canvas option - resets all pixels to underscore
                 clearCanvas(&canvas);
                 printf("Canvas has been cleared!\n");
                 break;
                 
-            case 4:
+            case 5:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);
                 break;
                 
             default:
-                // Invalid choice - user entered a number outside valid range (1-4)
-                printf("Invalid choice! Please enter 1, 2, 3, or 4.\n");
+                // Invalid choice - user entered a number outside valid range (1-5)
+                printf("Invalid choice! Please enter 1, 2, 3, 4, or 5.\n");
                 break;
         }
     }

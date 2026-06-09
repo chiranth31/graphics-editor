@@ -104,3 +104,27 @@ void drawRectangle(Canvas *c, int x, int y, int width, int height) {
         }
     }
 }
+
+/*
+ * drawLine
+ * Draws a horizontal or vertical line using '*' characters.
+ * If horizontal is non-zero, draws from (x, y) to the right.
+ * If horizontal is zero, draws from (x, y) downward.
+ */
+void drawLine(Canvas *c, int x, int y, int length, int horizontal) {
+    int i;
+    
+    if (horizontal) {
+        for (i = x; i < x + length; i++) {
+            if (y >= 0 && y < CANVAS_HEIGHT && i >= 0 && i < CANVAS_WIDTH) {
+                c->canvas[y][i] = '*';
+            }
+        }
+    } else {
+        for (i = y; i < y + length; i++) {
+            if (x >= 0 && x < CANVAS_WIDTH && i >= 0 && i < CANVAS_HEIGHT) {
+                c->canvas[i][x] = '*';
+            }
+        }
+    }
+}
