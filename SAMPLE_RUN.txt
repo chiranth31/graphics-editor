@@ -1,0 +1,219 @@
+﻿PS C:\Users\Chiranth T V\graphics-editor> .\output\main.exe
+Welcome to the 2D Graphics Editor!
+(Press Enter after each menu choice)
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 1
+
+Current Canvas:
+
++--------------------------------------------------+
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
+|__________________________________________________|
++--------------------------------------------------+
+
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 2
+Enter x, y, width, height: 10 2 4 3
+Rectangle drawn at (10, 2) with width 4 and height 3.
+Object id: 1
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 3
+Enter x, y, length, horizontal(1=horizontal,0=vertical): 22 7 5 1
+Line drawn at (22, 7) with length 5, horizontal.
+Object id: 2
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 4
+Enter x1, y1, x2, y2, x3, y3: 5 5 15 5 10 12
+Triangle drawn with vertices (5, 5), (15, 5), (10, 12).
+Object id: 3
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 5
+Enter center x, center y, radius: 25 10 3
+Circle drawn at center (25, 10) with radius 3.
+Object id: 4
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 6
+Canvas has been cleared!
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 7
+
+Stored Objects (count=4):
+1: Rectangle at (10,2) w=4 h=3
+2: Line at (22,7) len=5 horizontal
+3: Triangle (5,5)-(15,5)-(10,12)
+4: Circle center=(25,10) r=3
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 8
+Enter object id to delete: 2
+Object 2 deleted. Canvas redrawn.
+
+Stored Objects (count=3):
+1: Rectangle at (10,2) w=4 h=3
+3: Triangle (5,5)-(15,5)-(10,12)
+4: Circle center=(25,10) r=3
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 9
+Enter object id to modify: 1
+Current rectangle: (10, 2) w=4 h=3
+Enter new x, y, width, height: 1 1 2 2
+Object 1 modified. Canvas redrawn.
+
+Stored Objects (count=3):
+1: Rectangle at (1,1) w=2 h=2
+3: Triangle (5,5)-(15,5)-(10,12)
+4: Circle center=(25,10) r=3
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 11
+Invalid choice! Please enter a number between 1 and 10.
+
+========== 2D Graphics Editor ==========
+1. Display Picture
+2. Draw Rectangle
+3. Draw Line
+4. Draw Triangle
+5. Draw Circle
+6. Clear Canvas
+7. List Objects
+8. Delete Object
+9. Modify Object
+10. Exit
+========================================
+Enter your choice (1-10): 10
+Thank you for using the 2D Graphics Editor!
