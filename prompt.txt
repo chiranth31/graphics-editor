@@ -1,0 +1,430 @@
+2D Graphics Editor - Generative AI Prompt Log
+
+Student Name : Chiranth T V
+SRN : R25EF066
+Class & Section : CSE II-B
+
+==================================================
+PROJECT SETUP PROMPTS
+
+Prompt:
+I have been given a mini project to develop a menu-driven 2D Graphics Editor in C. How should I start the project and organize the files?
+
+Response Summary:
+
+* Suggested creating separate files: main.c, graphics.c and graphics.h.
+* Recommended keeping menu logic in main.c.
+* Recommended placing drawing and canvas functions in graphics.c.
+* Suggested using a 2D character array as the canvas.
+
+---
+
+Prompt:
+I created a GitHub repository:
+https://github.com/chiranth31/graphics-editor.git
+
+How do I connect my VS Code project to this repository and upload my code?
+
+Response Summary:
+
+* Initialized Git using git init.
+* Added files using git add .
+* Created first commit.
+* Connected local project to the GitHub repository using git remote add origin.
+* Uploaded code using git push -u origin main.
+
+---
+
+Prompt:
+My assignment instructions say:
+"Create a repository in GitHub, submit the repository link in Moodle, and perform daily pushes."
+
+How should I maintain my repository properly?
+
+Response Summary:
+
+* Commit changes after completing each feature.
+* Use meaningful commit messages.
+* Push changes daily.
+* Maintain a clear development history for evaluation.
+
+---
+
+Prompt:
+Can you suggest commit messages for different stages of my Graphics Editor project?
+
+Response Summary:
+Suggested commit messages such as:
+
+* Initial project setup with canvas
+* Added canvas clearing and formatting
+* Improved menu navigation and validation
+* Implemented rectangle drawing
+* Added line drawing functionality
+* Implemented triangle drawing
+* Added circle drawing support
+* Implemented object storage and listing
+* Implemented object deletion
+* Implemented object modification
+* Refactored code and added documentation
+* Final project documentation and cleanup
+
+==================================================
+
+Generative AI Platform:
+Visual Studio Code AI Assistant (GitHub Copilot Chat)
+
+COMMIT 1
+Commit Message:
+Initial project setup with canvas
+
+Prompt:
+Create a new C project for a menu-driven 2D Graphics Editor.
+
+Requirements:
+
+* Use a 20x50 2D character array as canvas.
+* Fill canvas with '_' characters.
+* Create initializeCanvas().
+* Create displayCanvas().
+* Create a basic menu with:
+
+  1. Display Picture
+  2. Exit
+* Use functions and comments.
+  Do not add drawing functions yet.
+
+Response Summary:
+
+* Created Canvas data structure.
+* Implemented initializeCanvas().
+* Implemented displayCanvas().
+* Created menu-driven main program.
+* Added function prototypes and comments.
+
+==================================================
+COMMIT 2
+Commit Message:
+Added canvas clearing and formatting
+
+Prompt:
+Extend my existing 2D Graphics Editor.
+
+Add:
+
+* clearCanvas()
+* Menu option for clearing canvas
+* Better display formatting with row and column borders
+* Proper function prototypes
+  Do not modify existing functionality unnecessarily.
+
+Response Summary:
+
+* Added clearCanvas().
+* Added menu option for clearing canvas.
+* Improved canvas display formatting.
+* Updated function declarations in header file.
+
+==================================================
+COMMIT 3
+Commit Message:
+Improved menu navigation and validation
+
+Prompt:
+Improve the menu system.
+
+Add:
+
+* Input validation
+* Invalid choice handling
+* Loop menu until Exit is selected
+* Better code comments
+
+Response Summary:
+
+* Added continuous menu loop.
+* Added invalid choice handling.
+* Improved user interaction.
+* Added explanatory comments.
+
+==================================================
+COMMIT 4
+Commit Message:
+Implemented rectangle drawing
+
+Prompt:
+Add drawRectangle() to my existing project.
+
+Requirements:
+
+* User enters x, y, width, height
+* Draw rectangle using '*'
+* Add menu option for drawing rectangle
+* Keep existing code unchanged
+
+Response Summary:
+
+* Added drawRectangle().
+* Rectangle borders drawn using '*'.
+* Added rectangle menu option.
+* Preserved existing functionality.
+
+==================================================
+COMMIT 5
+Commit Message:
+Added line drawing functionality
+
+Prompt:
+Add drawLine() function.
+
+Requirements:
+
+* Horizontal and vertical lines
+* Draw using '*'
+* Add menu option
+* Use separate function
+
+Response Summary:
+
+* Added drawLine().
+* Supports horizontal lines.
+* Supports vertical lines.
+* Added corresponding menu option.
+
+==================================================
+COMMIT 6
+Commit Message:
+Implemented triangle drawing
+
+Prompt:
+Add drawTriangle() function.
+
+Requirements:
+
+* Draw triangle using coordinates
+* Use '*' characters
+* Add menu option
+* Keep code modular
+
+Response Summary:
+
+* Added drawTriangle().
+* Triangle edges drawn using line segments.
+* Added menu integration.
+* Kept implementation modular.
+
+==================================================
+COMMIT 7
+Commit Message:
+Added circle drawing support
+
+Prompt:
+Add drawCircle() function.
+
+Requirements:
+
+* Draw approximate circle using radius
+* Use '*' characters
+* Add menu option
+* Keep compatibility with existing code
+
+Response Summary:
+
+* Added drawCircle().
+* Used mathematical approximation for circle plotting.
+* Added menu option.
+* Integrated with existing canvas system.
+
+==================================================
+COMMIT 8
+Commit Message:
+Implemented object storage and listing
+
+Prompt:
+Add object management.
+
+Requirements:
+
+* Create structure for graphical objects
+* Store type and coordinates
+* Maintain object list
+* Add List Objects menu option
+
+Response Summary:
+
+* Created GraphicalObject structure.
+* Added ObjectType enumeration.
+* Implemented object storage array.
+* Added object listing functionality.
+
+==================================================
+COMMIT 9
+Commit Message:
+Implemented object deletion
+
+Prompt:
+Add deleteObject().
+
+Requirements:
+
+* Delete object by ID
+* Redraw canvas after deletion
+* Update object list
+* Add menu option
+
+Response Summary:
+
+* Implemented deleteObject().
+* Updated object list after deletion.
+* Redrew canvas automatically.
+* Added delete menu option.
+
+==================================================
+COMMIT 10
+Commit Message:
+Implemented object modification
+
+Prompt:
+Add modifyObject().
+
+Requirements:
+
+* Modify coordinates and dimensions of existing object
+* Redraw canvas
+* Update object information
+* Add menu option
+
+Response Summary:
+
+* Implemented modifyObject().
+* Allowed updating object parameters.
+* Redrew canvas after modification.
+* Updated stored object information.
+
+==================================================
+COMMIT 11
+Commit Message:
+Refactored code and added documentation
+
+Prompt:
+Improve project documentation.
+
+Requirements:
+
+* Add comments to all functions
+* Improve code readability
+* Add header comments
+* Remove unused code
+
+Response Summary:
+
+* Added function documentation.
+* Improved readability.
+* Added header comments.
+* Removed unnecessary code sections.
+
+==================================================
+COMMIT 12
+Commit Message:
+Final project documentation and cleanup
+
+Prompt:
+Generate a professional README.md for my 2D Graphics Editor project.
+
+Include:
+
+* Project description
+* Features
+* Data structures used
+* Functions used
+* Compilation instructions
+* Sample output
+* Future improvements
+
+Response Summary:
+
+* Generated detailed README.md.
+* Documented project architecture.
+* Added build and execution instructions.
+* Added feature list and future scope.
+
+==================================================
+COMMIT 13
+Commit Message:
+Fix abs() declaration by including stdlib.h
+
+Prompt:
+The project compiles on my machine but GCC reports:
+"implicit declaration of function 'abs'".
+
+Analyze the code and provide the correct fix while keeping all existing functionality unchanged.
+
+Response Summary:
+
+* Identified missing declaration of abs().
+* Recommended adding:
+
+  #include <stdlib.h>
+
+  to graphics.c.
+* Recompiled project successfully.
+* Verified no functional changes were introduced.
+  ==================================================
+
+Prompt:
+How do I verify that all my commits have been uploaded successfully to GitHub?
+
+Response Summary:
+
+* Check commit history on GitHub.
+* Verify latest commit appears online.
+* Refresh repository page.
+* Compare local and remote branches.
+
+---
+
+Prompt:
+Before submitting my mini project, how can I check whether my GitHub repository looks complete?
+
+Repository:
+https://github.com/chiranth31/graphics-editor.git
+
+Response Summary:
+Suggested verifying:
+
+* Source files are present.
+* README.md is available.
+* Multiple commits exist.
+* Project compiles successfully.
+* Repository is public.
+* Repository link can be accessed by evaluators.
+
+---
+
+Prompt:
+How do I submit my GitHub repository in Moodle?
+
+Response Summary:
+
+* Open repository page.
+* Copy repository URL.
+* Open Moodle assignment submission page.
+* Paste the repository link into the online text field.
+* Submit before the deadline.
+
+---
+
+Prompt:
+My project compiles and runs correctly in VS Code. What should I check before final submission?
+
+Response Summary:
+
+* Verify compilation without errors.
+* Test all menu options.
+* Test rectangle, line, triangle and circle drawing.
+* Test add, delete and modify operations.
+* Ensure GitHub repository contains latest code and documentation.
+
+==================================================
+END OF PROJECT SETUP PROMPTS
+============================
