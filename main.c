@@ -24,9 +24,10 @@ void displayMenu(void) {
     printf("6. Clear Canvas\n");
     printf("7. List Objects\n");
     printf("8. Delete Object\n");
-    printf("9. Exit\n");
+    printf("9. Modify Object\n");
+    printf("10. Exit\n");
     printf("========================================\n");
-    printf("Enter your choice (1-9): ");
+    printf("Enter your choice (1-10): ");
 }
 
 /*
@@ -200,7 +201,129 @@ int main(void) {
                 break;
             }
 
-            case 9:
+            case 9: {
+                int id;
+                printf("Enter object id to modify: ");
+                if (scanf("%d", &id) != 1) {
+                    clearInputBuffer();
+                    printf("ERROR: Invalid input! Please enter a numeric object id.\n");
+                    break;
+                }
+                clearInputBuffer();
+
+                GraphicalObject *obj = getObjectById(id);
+                if (obj == NULL) {
+                    printf("Object id %d not found. No changes made.\n", id);
+                    break;
+                }
+
+                GraphicalObject updated = *obj;
+                updated.type = obj->type;
+
+                switch (obj->type) {
+                    case OBJ_RECTANGLE: {
+                        int x, y, width, height;
+                        printf("Current rectangle: (%d, %d) w=%d h=%d\n",
+                               obj->data.rect.x, obj->data.rect.y,
+                               obj->data.rect.width, obj->data.rect.height);
+                        printf("Enter new x, y, width, height: ");
+                        if (scanf("%d %d %d %d", &x, &y, &width, &height) != 4) {
+                            clearInputBuffer();
+                            printf("ERROR: Invalid rectangle input! Please enter four integers.\n");
+                            break;
+                        }
+                        clearInputBuffer();
+                        if (width <= 0 || height <= 0) {
+                            printf("ERROR: Width and height must be positive values.\n");
+                            break;
+                        }
+                        updated.data.rect.x = x;
+                        updated.data.rect.y = y;
+                        updated.data.rect.width = width;
+                        updated.data.rect.height = height;
+                        break;
+                    }
+                    case OBJ_LINE: {
+                        int x, y, length, horizontal;
+                        printf("Current line: (%d, %d) len=%d %s\n",
+                               obj->data.line.x, obj->data.line.y,
+                               obj->data.line.length,
+                               obj->data.line.horizontal ? "horizontal" : "vertical");
+                        printf("Enter new x, y, length, horizontal(1=horizontal,0=vertical): ");
+                        if (scanf("%d %d %d %d", &x, &y, &length, &horizontal) != 4) {
+                            clearInputBuffer();
+                            printf("ERROR: Invalid line input! Please enter four integers.\n");
+                            break;
+                        }
+                        clearInputBuffer();
+                        if (length <= 0) {
+                            printf("ERROR: Length must be a positive value.\n");
+                            break;
+                        }
+                        updated.data.line.x = x;
+                        updated.data.line.y = y;
+                        updated.data.line.length = length;
+                        updated.data.line.horizontal = horizontal ? 1 : 0;
+                        break;
+                    }
+                    case OBJ_TRIANGLE: {
+                        int x1, y1, x2, y2, x3, y3;
+                        printf("Current triangle: (%d, %d)-(%d, %d)-(%d, %d)\n",
+                               obj->data.tri.x1, obj->data.tri.y1,
+                               obj->data.tri.x2, obj->data.tri.y2,
+                               obj->data.tri.x3, obj->data.tri.y3);
+                        printf("Enter new x1, y1, x2, y2, x3, y3: ");
+                        if (scanf("%d %d %d %d %d %d", &x1, &y1, &x2, &y2, &x3, &y3) != 6) {
+                            clearInputBuffer();
+                            printf("ERROR: Invalid triangle input! Please enter six integers.\n");
+                            break;
+                        }
+                        clearInputBuffer();
+                        updated.data.tri.x1 = x1;
+                        updated.data.tri.y1 = y1;
+                        updated.data.tri.x2 = x2;
+                        updated.data.tri.y2 = y2;
+                        updated.data.tri.x3 = x3;
+                        updated.data.tri.y3 = y3;
+                        break;
+                    }
+                    case OBJ_CIRCLE: {
+                        int cx, cy, radius;
+                        printf("Current circle: center=(%d, %d) r=%d\n",
+                               obj->data.circ.cx, obj->data.circ.cy,
+                               obj->data.circ.radius);
+                        printf("Enter new center x, center y, radius: ");
+                        if (scanf("%d %d %d", &cx, &cy, &radius) != 3) {
+                            clearInputBuffer();
+                            printf("ERROR: Invalid circle input! Please enter three integers.\n");
+                            break;
+                        }
+                        clearInputBuffer();
+                        if (radius <= 0) {
+                            printf("ERROR: Radius must be a positive value.\n");
+                            break;
+                        }
+                        updated.data.circ.cx = cx;
+                        updated.data.circ.cy = cy;
+                        updated.data.circ.radius = radius;
+                        break;
+                    }
+                    default:
+                        printf("ERROR: Unknown object type. Cannot modify.\n");
+                        break;
+                }
+
+                if (modifyObject(id, &updated)) {
+                    redrawObjects(&canvas);
+                    printf("Object %d modified. Canvas redrawn.\n", id);
+                    listObjects();
+                } else {
+                    printf("Failed to modify object %d.\n", id);
+                }
+                break;
+            }
+
+            case 10:
                 // Exit option - terminates the program
                 printf("Thank you for using the 2D Graphics Editor!\n");
                 exit(0);

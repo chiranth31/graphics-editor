@@ -53,6 +53,8 @@ int addLineObject(int x, int y, int length, int horizontal);
 int addTriangleObject(int x1, int y1, int x2, int y2, int x3, int y3);
 int addCircleObject(int cx, int cy, int radius);
 int deleteObject(int id);
+int modifyObject(int id, const GraphicalObject *updated);
+GraphicalObject *getObjectById(int id);
 void redrawObjects(Canvas *c);
 void listObjects(void);
 

@@ -127,6 +127,41 @@ int deleteObject(int id) {
     return 1;
 }
 
+GraphicalObject *getObjectById(int id) {
+    int i;
+    for (i = 0; i < object_count; i++) {
+        if (object_list[i].id == id) {
+            return &object_list[i];
+        }
+    }
+    return NULL;
+}
+
+int modifyObject(int id, const GraphicalObject *updated) {
+    GraphicalObject *obj = getObjectById(id);
+    if (obj == NULL || updated == NULL) {
+        return 0;
+    }
+
+    switch (obj->type) {
+        case OBJ_RECTANGLE:
+            obj->data.rect = updated->data.rect;
+            break;
+        case OBJ_LINE:
+            obj->data.line = updated->data.line;
+            break;
+        case OBJ_TRIANGLE:
+            obj->data.tri = updated->data.tri;
+            break;
+        case OBJ_CIRCLE:
+            obj->data.circ = updated->data.circ;
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
+
 void redrawObjects(Canvas *c) {
     int i;
     clearCanvas(c);
