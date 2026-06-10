@@ -4,20 +4,29 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 #include "graphics.h"
 
-// Internal object list storage
+// Internal object list storage. Stored objects are kept in a simple array
+// so they can be listed, deleted, modified, and redrawn on the canvas.
 static GraphicalObject object_list[MAX_OBJECTS];
 static int object_count = 0;
 static int next_object_id = 1;
 
+/*
+ * initObjectList
+ * Resets internal object storage and id tracking.
+ */
 void initObjectList(void) {
     object_count = 0;
     next_object_id = 1;
 }
 
+/*
+ * addObject
+ * Adds a generic object to the internal object list.
+ * Returns the newly assigned object id, or -1 if storage is full.
+ */
 static int addObject(GraphicalObject *obj) {
     if (object_count >= MAX_OBJECTS) return -1;
     obj->id = next_object_id++;
@@ -66,6 +75,10 @@ int addCircleObject(int cx, int cy, int radius) {
     return addObject(&obj);
 }
 
+/*
+ * listObjects
+ * Prints all stored graphical objects and their parameters.
+ */
 void listObjects(void) {
     int i;
     if (object_count == 0) {
@@ -105,6 +118,11 @@ void listObjects(void) {
     printf("\n");
 }
 
+/*
+ * deleteObject
+ * Removes the object with the specified id from internal storage.
+ * Returns 1 when deletion succeeds, or 0 when no object is found.
+ */
 int deleteObject(int id) {
     int i, j;
     int found = -1;
@@ -127,6 +145,10 @@ int deleteObject(int id) {
     return 1;
 }
 
+/*
+ * getObjectById
+ * Returns a pointer to the object with the requested id, or NULL if not found.
+ */
 GraphicalObject *getObjectById(int id) {
     int i;
     for (i = 0; i < object_count; i++) {
@@ -137,6 +159,11 @@ GraphicalObject *getObjectById(int id) {
     return NULL;
 }
 
+/*
+ * modifyObject
+ * Updates the stored object parameters for the object with the given id.
+ * Returns 1 on success, or 0 if the object was not found.
+ */
 int modifyObject(int id, const GraphicalObject *updated) {
     GraphicalObject *obj = getObjectById(id);
     if (obj == NULL || updated == NULL) {
@@ -162,6 +189,10 @@ int modifyObject(int id, const GraphicalObject *updated) {
     return 1;
 }
 
+/*
+ * redrawObjects
+ * Clears the canvas and redraws all stored objects in the current list.
+ */
 void redrawObjects(Canvas *c) {
     int i;
     clearCanvas(c);

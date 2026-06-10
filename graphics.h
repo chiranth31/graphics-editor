@@ -16,7 +16,7 @@ typedef struct {
     char canvas[CANVAS_HEIGHT][CANVAS_WIDTH];
 } Canvas;
 
-// Function prototypes
+// Canvas manipulation functions
 void initializeCanvas(Canvas *c);
 void displayCanvas(Canvas *c);
 void clearCanvas(Canvas *c);
@@ -25,7 +25,7 @@ void drawLine(Canvas *c, int x, int y, int length, int horizontal);
 void drawCircle(Canvas *c, int centerX, int centerY, int radius);
 void drawTriangle(Canvas *c, int x1, int y1, int x2, int y2, int x3, int y3);
 
-// Object management
+// Object management constants and types
 #define MAX_OBJECTS 100
 
 typedef enum {
